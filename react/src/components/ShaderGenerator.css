@@ -1,0 +1,114 @@
+.shader-generator {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+}
+
+.input-section {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-section input {
+  width: 60%;
+  padding: 12px;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-section input:focus {
+  border-color: #646cff;
+  outline: none;
+}
+
+.input-section button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: #646cff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.input-section button:hover {
+  background: #535bf2;
+}
+
+.input-section button:disabled {
+  background: #a5a6f6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.display-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.canvas-container, .code-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.canvas-container h3, .code-container h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.code-container {
+  margin-top: 2rem;
+}
+
+canvas {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+  color: #ff4444;
+  padding: 1rem;
+  background: #fff0f0;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.shader-code {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 500px;
+  overflow-x: auto;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #ffffff;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -4,6 +4,9 @@ export class WebGLManager {
         if (!this.gl) {
             throw new Error('WebGL not supported');
         }
+        // Initialize with white background
+        this.gl.clearColor(1.0, 1.0, 1.0, 1.0);
+        this.gl.clear(this.gl.COLOR_BUFFER_BIT);
     }
 
     compileShader(source, type) {
@@ -29,6 +32,11 @@ export class WebGLManager {
             throw new Error('Shader program link error: ' + this.gl.getProgramInfoLog(program));
         }
         return program;
+    }
+
+    clearCanvas() {
+        this.gl.clearColor(1.0, 1.0, 1.0, 1.0); // White background
+        this.gl.clear(this.gl.COLOR_BUFFER_BIT);
     }
 
     renderShader(fragmentShaderSource) {

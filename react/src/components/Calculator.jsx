@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import init, { calculate } from '../../../rust/pkg';
+import './Calculator.css';
 
 const Calculator = () => {
   const [expression, setExpression] = useState('');
@@ -29,7 +30,10 @@ const Calculator = () => {
         placeholder="Enter mathematical expression (e.g., 2+2)"
       />
       <button onClick={handleCalculate}>Calculate</button>
-      <div className="result">{result}</div>
+      <div className="result-container">
+        <div className="result-label">Result</div>
+        <div className="result">{result || '0'}</div>
+      </div>
     </div>
   );
 }
