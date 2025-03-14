@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import init, { calculate } from '../../../rust/pkg';
 
 const Calculator = () => {
   const [expression, setExpression] = useState('');
   const [result, setResult] = useState('');
+  const [wasmLoaded, setWasmLoaded] = useState(false);
 
+  useEffect(() => {
+    init().then(() => setWasmLoaded(true));
+  }, []);
 
   const handleCalculate = () => {
-    setResult(expression)
+    if (!wasmLoaded) return;
+    try {
+      const calculatedResult = calculate(expression);
+      setResult(calculatedResult.toString());
+    } catch (error) {
+      setResult('Error: Invalid expression');
+    }
   };
 
   return (
