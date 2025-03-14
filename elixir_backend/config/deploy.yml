@@ -46,6 +46,9 @@ builder:
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 #
 env:
+  clear:
+    PHX_HOST: invideo-backend.jatingoyal.com
+    CORS_ORIGIN: https://invideo.jatingoyal.com
   secret:
     - SECRET_KEY_BASE
     - CF_ACCOUNT_ID

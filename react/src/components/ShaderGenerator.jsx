@@ -21,7 +21,8 @@ const ShaderGenerator = () => {
   const handleGenerateShader = async () => {
     try {
       setError('');
-      const response = await fetch('http://localhost:4000/api/generate_shader', {
+      const apiHost = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
+      const response = await fetch(`${apiHost}/api/generate_shader`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt }),
