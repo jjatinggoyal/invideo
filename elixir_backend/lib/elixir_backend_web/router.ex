@@ -8,6 +8,7 @@ defmodule ElixirBackendWeb.Router do
 
   scope "/api", ElixirBackendWeb do
     pipe_through :api
+    get "/up", ShaderController, :health_check
     post "/generate_shader", ShaderController, :generate
   end
 

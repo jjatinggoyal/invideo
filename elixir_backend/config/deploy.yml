@@ -22,6 +22,8 @@ proxy:
   host: invideo-backend.jatingoyal.com
   # Proxy connects to your container on port 80 by default.
   app_port: 4000
+  healthcheck:
+    path: /api/up
 
 # Credentials for your image host.
 registry:
