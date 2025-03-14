@@ -3,10 +3,12 @@ defmodule ElixirBackendWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug CORSPlug, origin: ["http://localhost:5173"]
   end
 
   scope "/api", ElixirBackendWeb do
     pipe_through :api
+    post "/generate_shader", ShaderController, :generate
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

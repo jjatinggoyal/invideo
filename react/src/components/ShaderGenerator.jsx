@@ -21,8 +21,15 @@ const ShaderGenerator = () => {
   const handleGenerateShader = async () => {
     try {
       setError('');
-      const shader_code = "precision highp float;\nuniform float time;\n\nvoid main(void) {\n  vec2 uv = gl_FragCoord.xy / vec2(512.0, 512.0);\n  vec3 col = vec3(uv.x, uv.y, (uv.x + uv.y) * 0.5);\n  col += sin((uv.x + time) * 10.0) * 0.1;\n  col += sin((uv.y + time) * 15.0) * 0.1;\n  gl_FragColor = vec4(col, 1.0);\n}"
-      setShaderCode(shader_code);      
+      const response = await fetch('http://localhost:4000/api/generate_shader', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      });
+      
+      const data = await response.json();
+      setShaderCode(data.shader_code);
+      
       if (webglRef.current) {
         try {
           webglRef.current.renderShader(data.shader_code);
