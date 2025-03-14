@@ -1,8 +1,11 @@
 defmodule ElixirBackend.ShaderService do
   require Logger
 
-  @cf_api_url "https://gateway.ai.cloudflare.com/v1/#{System.get_env("CF_ACCOUNT_ID")}/invideo/workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast"
   @timeout 30_000  # 30 seconds timeout
+
+  defp cf_api_url do
+    "https://gateway.ai.cloudflare.com/v1/#{System.get_env("CF_ACCOUNT_ID")}/invideo/workers-ai/@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+  end
 
   def generate_shader(prompt) do
     full_prompt = """
@@ -28,7 +31,7 @@ defmodule ElixirBackend.ShaderService do
 
     Logger.info("Sending request to Cloudflare API with prompt: #{full_prompt}")
 
-    case HTTPoison.post(@cf_api_url, body, headers, [timeout: @timeout, recv_timeout: @timeout]) do
+    case HTTPoison.post(cf_api_url(), body, headers, [timeout: @timeout, recv_timeout: @timeout]) do
       {:ok, %{status_code: 200, body: response_body}} ->
         Logger.info("Received response: #{response_body}")
         handle_cf_response(response_body)
