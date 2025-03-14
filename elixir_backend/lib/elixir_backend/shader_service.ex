@@ -9,14 +9,20 @@ defmodule ElixirBackend.ShaderService do
 
   def generate_shader(prompt) do
     full_prompt = """
-    You are a WebGL shader expert. Generate a WebGL fragment shader based on this description: #{prompt}
-    The shader must:
-    1. Be compatible with WebGL 1.0
-    2. Include precision highp float; at the start
-    3. Define uniform float time; for animations
-    4. Output to gl_FragColor
-    5. Be complete and ready to use
-    Only return the shader code, no explanations or other text.
+    You are an expert WebGL 2.0 shader developer. Generate a **WebGL 2.0-compatible fragment shader** based on the following description: #{prompt}.
+
+    ### **Requirements**:
+    1. The shader **must be fully compatible with WebGL 2.0**.
+    2. **Start with** `#version 300 es` and `precision highp float;`.
+    3. **Define and use** the following uniforms:
+      - `uniform float time;` → Enables animation over time.
+      - `uniform vec2 resolution;` → Ensures correct aspect ratio and scaling.
+    4. **Use `out vec4 fragColor;` instead of `gl_FragColor`.**
+    5. The shader **must output dynamic visuals**:
+      - It should **animate over time** (`time`).
+      - It should **adapt to screen size** (`resolution`).
+    6. **Avoid static or single-color shaders.**
+    7. **Return only the complete shader code, no explanations or other text.**
     """
 
     headers = [
